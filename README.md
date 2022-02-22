@@ -28,6 +28,12 @@
     <artifactId>nimbus-jose-jwt</artifactId>
     <version>8.21</version>
 </dependency>
+<!-- spring security jwt -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-jwt</artifactId>
+    <version>1.0.10.RELEASE</version>
+</dependency>
 <!-- spring security oauth2 -->
 <dependency>
     <groupId>org.springframework.security.oauth</groupId>
@@ -67,6 +73,10 @@ spring.redis.password=
 1. 添加相关依赖
 ```
 <dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-pool2</artifactId>
+</dependency>
+<dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-redis</artifactId>
 </dependency>
@@ -76,12 +86,11 @@ spring.redis.password=
 </dependency>
 <dependency>
     <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-gateway</artifactId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 </dependency>
 <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-configuration-processor</artifactId>
-    <optional>true</optional>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
 </dependency>
 ```
 
