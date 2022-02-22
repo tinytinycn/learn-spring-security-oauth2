@@ -96,7 +96,7 @@ spring.redis.password=
 ## 四.password模式访问
 1. 使用password密码模式, 获取jwt令牌 
 ```http request
-POST http://localhost:8002/auth/oauth/token
+POST http://localhost:8002/oauth/token
 Content-Type: application/x-www-form-urlencoded
 
 grant_type=password&client_id=client-app&client_secret=123456&username=admin&password=123456
@@ -109,6 +109,10 @@ Authorization: bearer {{合法token}}}
 ```
 
 ## 五.authorized_code授权码模式访问
+
+![授权码](doc/authorization_code_mode.png)
+> 本项目访问授权服务器经过来网关服务器，需要在路由配置中放行相关路由的访问 /oauth/token, /oauth/authorize, /login
+
 1. 使用code授权码模式, 首先访问 `http://localhost:8002/oauth/authorize?response_type=code&client_id=client-app-2&redirect_uri=https://www.baidu.com`
 2. 点击"authorize"，进行授权
 3. 重定向到回调地址 `https://www.baidu.com/?code=exbDV5`, 获取code后，请立即进行第四步，code可能会在一段时间后失效
@@ -125,5 +129,5 @@ grant_type=authorization_code&client_id=client-app-2&client_secret=123456&code=g
 
 
 # 参考文章
-[理解Oauth2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
-[spring-cloud-gateway-oauth2](https://github.com/it-wwh/spring-cloud-gateway-oauth2)
+- [理解Oauth2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
+- [spring-cloud-gateway-oauth2](https://github.com/it-wwh/spring-cloud-gateway-oauth2)
