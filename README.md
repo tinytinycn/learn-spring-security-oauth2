@@ -60,14 +60,15 @@ spring.redis.password=
 3. 生成RSA证书
 `keytool -genkey -alias jwt -keyalg RSA -keystore jwt.jks`
 输入密码 `testpass` 输入相关信息后确认，生成jks文件，放至`resources`目录下
+4. 如果需要将公钥提供给第三方系统用于jwt校验使用，可以导出公钥 `keytool -list -rfc --keystore jwt.jks | openssl x509 -inform pem -pubkey`
 
-4. 创建用户管理类UserServiceImpl 实现UserDetailService接口，加载用户登陆信息;
-5. 创建客户端管理类ClientServiceImpl 实现ClientDetailService接口，加载客户端登陆信息;
-6. 添加认证服务相关配置类，配置UserServiceImpl,ClientServiceImpl服务以及RAS密钥对keyPair;
-7. 添加JWT增强器 实现TokenEnhancer接口，添加自定义信息;
-8. 暴露认证服务的密钥对公钥接口，提供给外部服务获取公钥，从而能够进行签名验证;
-9. 添加Spring Security配置类，放行获取公钥接口的访问;
-10. 创建资源服务ResourceServiceImpl，初始化的时，把资源与角色匹配关系缓存到Redis中，方便网关服务进行鉴权的时候获取;
+5. 创建用户管理类UserServiceImpl 实现UserDetailService接口，加载用户登陆信息;
+6. 创建客户端管理类ClientServiceImpl 实现ClientDetailService接口，加载客户端登陆信息;
+7. 添加认证服务相关配置类，配置UserServiceImpl,ClientServiceImpl服务以及RAS密钥对keyPair;
+8. 添加JWT增强器 实现TokenEnhancer接口，添加自定义信息;
+9. 暴露认证服务的密钥对公钥接口，提供给外部服务获取公钥，从而能够进行签名验证;
+10. 添加Spring Security配置类，放行获取公钥接口的访问;
+11. 创建资源服务ResourceServiceImpl，初始化的时，把资源与角色匹配关系缓存到Redis中，方便网关服务进行鉴权的时候获取;
 
 ## 二.搭建网关服务器(资源服务器resource server) gateway-server
 1. 添加相关依赖
